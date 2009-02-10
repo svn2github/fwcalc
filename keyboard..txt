@@ -1,0 +1,53 @@
+Operator      Key
++             +
+-             -
+/             /
+*             *
+%             %
+AND           &
+OR            |
+NOT           ~
+LSH           <
+RSH           >
+MOD           m
+XOR           x
+y^x           ^
+sqrt          q
+sqrt          r
+sin           s
+cos           c
+tan           t
+asin          i s
+acos          i c
+atan          i t
+sinh          h s
+cosh          h c
+tanh          h t
+asinh         i h s
+acosh         i h c
+atanh         i h t
+PI            p
+x!            !
+ln x          l
+exp x         i l
+1/x           o
+<-            Backspace
+CLR           Delete
+CHS           Escape
+EEX           e
+
+X<>Y          \
+
+STO 0         F1
+...
+STO 9         F10                        
+STO N         "Arror Up" N   (0<= N <= 9)
+
+RCL 0         CTRL+F1  or SHIFT+F1
+...
+RCL 9         CTRL+F10  or SHIFT+F10
+RCL N         "Arrow Down" N   (0 <= N <= 9)
+
+
+Consequitive keys means multiple 
+consequitive key pressed

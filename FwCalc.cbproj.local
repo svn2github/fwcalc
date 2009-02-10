@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2008-11-13 14:35:36.093.cbproj,C:\users\hviid\RAD Studio\Projects\Project3.cbproj=C:\users\hviid\C++\Tools\FwCalc\FwCalc.cbproj</Transaction>
+    <Transaction>2009/02/01 10:29:25.156.cpp,C:\users\hviid\C++\Tools\FwCalc\Unit1.cpp=C:\users\hviid\C++\Tools\FwCalc\CalculatorEngine.cpp</Transaction>
+    <Transaction>2009/02/01 10:29:25.156.h,C:\users\hviid\C++\Tools\FwCalc\Unit1.h=C:\users\hviid\C++\Tools\FwCalc\CalculatorEngine.h</Transaction>
+    <Transaction>2009/02/01 16:47:06.953.cpp,C:\users\hviid\C++\Tools\FwCalc\Unit1.cpp=C:\users\hviid\C++\Tools\FwCalc\TFormatButton.cpp</Transaction>
+    <Transaction>2009/02/01 16:47:06.984.h,C:\users\hviid\C++\Tools\FwCalc\Unit1.h=C:\users\hviid\C++\Tools\FwCalc\TFormatButton.h</Transaction>
+    <Transaction>2009/02/07 15:15:53.031.cpp,C:\users\hviid\C++\Tools\FwCalc\Unit1.cpp=C:\users\hviid\C++\Tools\FwCalc\KeyboardShorcutForm.cpp</Transaction>
+    <Transaction>2009/02/07 15:15:53.031.h,C:\users\hviid\C++\Tools\FwCalc\Unit1.h=C:\users\hviid\C++\Tools\FwCalc\KeyboardShorcutForm.h</Transaction>
+    <Transaction>2009/02/07 15:15:53.031.dfm,C:\users\hviid\C++\Tools\FwCalc\Unit1.dfm=C:\users\hviid\C++\Tools\FwCalc\KeyboardShorcutForm.dfm</Transaction>
+  </Transactions>
+</BorlandProject>
