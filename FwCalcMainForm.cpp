@@ -153,6 +153,7 @@ int x,y;
 			b->Width = Num7Button->Width;
 			b->Height = Num7Button->Height;
 			b->OnClick = OnOperatorClick;
+			b->ShowHint = true;
 
 		}
 	}
@@ -307,10 +308,10 @@ void TFwCalcMainDlg::AssignLayout(eCalcLayout layout)
 						  "sin", "cos", "tan", "x\\f{Symbol}«\\fy",
 						  "hsin", "hcos", "htan", "RND"
 						 };
-		char *hints[16] = {"x squared", "Natural logarithm", "base 10 logarighm", "1 divided by x",
-						   "square-root", "Exponential function", "10 power x function", "y power x function",
-						   "sinus function", "cosinus function", "tangent function", "Swap X with y operator",
-						   "hyperbolic sinus function", "hyperbolic cosinus function", "hyperbolic tangent function", "Random number"
+		char *hints[16] = {"x squared [Enter *]", "natural logarithm [l]", "base 10 logarighm", "1 divided by x [o]",
+						   "square-root [q]", "exponential function [i l]", "10 power x function", "y power x function [^]",
+						   "sinus function [s]", "cosinus function [c]", "tangent function [t]", "Swap X with y operator [\\]",
+						   "hyperbolic sinus function [h s]", "hyperbolic cosinus function [h c]", "hyperbolic tangent function [h t]", "Random number"
 						  };
 		eCalcOperator actions[16] = {eOpX2,eOpLN, eOpLOG, wOp1divX,
 								  eOpSqrt, eOpeX, eOp10X, eOpyX,
@@ -332,6 +333,11 @@ void TFwCalcMainDlg::AssignLayout(eCalcLayout layout)
 						  "Frac", "Int", "abs", "\\f{Symbol}\\Bs\\f",
 						  "sin\\S-1", "cos\\S-1", "tan\\S-1", "x\\f{Symbol}«\\fy",
 						  "hsin\\S-1", "hcos\\S-1", "htan\\S-1", "x!"};
+		char *hints[16] = {"Convert to RAD", "Convert to DEG", "Convert to GRAD", "x percent of y operator",
+						   "fractional part of number", "integer part of number", "norm of value", "calc mean and stddev of all values on stack y=mean x=stddev",
+						   "inverse sinus function [i s]", "inverse cosinus function [i c]", "inverse tangent function [i t]", "Swap X with y operator [\\]",
+						   "inverse hyperbolic sinus function [i h s]", "inverse hyperbolic cosinus function [i h c]", "inverse hyperbolic tangent function [i h t]", "factorial operator [!]"
+						  };
 		eCalcOperator actions[16] = {eOpToRAD,eOpToDEG, eOpToGrad, eOpPercent,
 								  eOpFrac, eOpeInt, eOpAbs, eOpMeanStddev,
 								  eOpArcSin, eOpArcCos, eOpArcTan, eOpSwapXY,
@@ -340,6 +346,7 @@ void TFwCalcMainDlg::AssignLayout(eCalcLayout layout)
 			for(i=0;i<16;i++)
 			{
 				m_op_buttons[i]->Caption = labels[i];
+				m_op_buttons[i]->Hint = hints[i];
 				m_op_action[i] = actions[i];
 			}
 		}
@@ -352,6 +359,11 @@ void TFwCalcMainDlg::AssignLayout(eCalcLayout layout)
 						  "AND", "OR", "NOT", "XOR",
 						  "","","",""
 						 };
+		char *hints[16] = {"", "", "", "",
+						   "left shift operator [<]", "right shift operator [>]", "y modulus x operator [m]", "set bit # operator",
+						   "bitwise AND operator [&]", "birwise OR operator [|]", "bitwise NOT operator [~]", "bitwise XOR operator [x]",
+						   "", "", "", ""
+						  };
 		eCalcOperator actions[16] = {eOpNone,eOpNone, eOpNone, eOpNone,
 								  eOpLSH, eOpRSH, eOpMOD, eOpBIT,
 								  eOpAND, eOpOR, eOpNOT, eOpXOR,
@@ -360,6 +372,7 @@ void TFwCalcMainDlg::AssignLayout(eCalcLayout layout)
 			for(i=0;i<16;i++)
 			{
 				m_op_buttons[i]->Caption = labels[i];
+				m_op_buttons[i]->Hint = hints[i];
 				m_op_action[i] = actions[i];
 			}
 		}
