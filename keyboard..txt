@@ -1,3 +1,6 @@
+Switch to Alternative button layout using Shift key
+Switch to Computational button using Ctrl key
+
 Operator      Key
 +             +
 -             -

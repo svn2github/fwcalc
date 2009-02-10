@@ -95,7 +95,7 @@ __published:	// IDE-managed Components
 	TSpeedButton *SetBinButton;
 	TSpeedButton *ToggleTrigButton;
 	TSpeedButton *STOButton;
-	TSpeedButton *SpeedButton6;
+	TSpeedButton *RCLButton;
 	TSpeedButton *CLRButton;
 	TSpeedButton *BackButton;
 	TPanel *Panel1;

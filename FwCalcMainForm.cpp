@@ -164,6 +164,7 @@ int x,y;
 	m_alt1->Width = STOButton->Width;
 	m_alt1->Height = STOButton->Height;
 	m_alt1->OnClick = OnAltInputClick;
+	m_alt1->ShowHint = true;
 
 	m_alt2 = new TFormatButton(this);
 	m_alt2->Parent = ButtonPanel;
@@ -172,6 +173,7 @@ int x,y;
 	m_alt2->Width = Num7Button->Width;
 	m_alt2->Height = Num7Button->Height;
 	m_alt2->OnClick = OnAltInputClick;
+	m_alt2->ShowHint = true;
 
 	m_alt3 = new TFormatButton(this);
 	m_alt3->Parent = ButtonPanel;
@@ -180,6 +182,7 @@ int x,y;
 	m_alt3->Width = Num4Button->Width;
 	m_alt3->Height = Num4Button->Height;
 	m_alt3->OnClick = OnAltInputClick;
+	m_alt3->ShowHint = true;
 
 	m_alt4 = new TFormatButton(this);
 	m_alt4->Parent = ButtonPanel;
@@ -188,6 +191,7 @@ int x,y;
 	m_alt4->Width = Num1Button->Width;
 	m_alt4->Height = Num1Button->Height;
 	m_alt4->OnClick = OnAltInputClick;
+	m_alt4->ShowHint = true;
 
 	m_alt5 = new TFormatButton(this);
 	m_alt5->Parent = ButtonPanel;
@@ -196,6 +200,7 @@ int x,y;
 	m_alt5->Width = Num0Button->Width;
 	m_alt5->Height = Num0Button->Height;
 	m_alt5->OnClick = OnAltInputClick;
+	m_alt5->ShowHint = true;
 
 	m_alt6 = new TFormatButton(this);
 	m_alt6->Parent = ButtonPanel;
@@ -203,7 +208,8 @@ int x,y;
 	m_alt6->Top = EnterButton->Top;
 	m_alt6->Width = Num0Button->Width;
 	m_alt6->Height = Num0Button->Height;
-	m_alt6->OnClick = OnAltInputClick;	
+	m_alt6->OnClick = OnAltInputClick;
+	m_alt6->ShowHint = true;
 }
 
 eCalcLayout TFwCalcMainDlg::LayoutFromShift(TShiftState Shift)
@@ -238,6 +244,12 @@ void TFwCalcMainDlg::AssignAltButtons()
 		m_alt4->Visible = true;
 		m_alt5->Visible = true;
 		m_alt6->Visible = true;
+		m_alt1->Hint = "Enter heaxidecimal value A";
+		m_alt2->Hint = "Enter heaxidecimal value B";
+		m_alt3->Hint = "Enter heaxidecimal value C";
+		m_alt4->Hint = "Enter heaxidecimal value D";
+		m_alt5->Hint = "Enter heaxidecimal value E";
+		m_alt6->Hint = "Enter heaxidecimal value F";
 	}
 	else if(m_engine->BaseMode == eBaseDec)
 	{
@@ -253,6 +265,12 @@ void TFwCalcMainDlg::AssignAltButtons()
 		m_alt4->Visible = true;
 		m_alt5->Visible = true;
 		m_alt6->Visible = false;
+		m_alt1->Hint = "Enter value PI";
+		m_alt2->Hint = "Enter value e (base of the natural logarithm)";
+		m_alt3->Hint = "Enter value of Planck's constant";
+		m_alt4->Hint = "Enter value of Newtons gravitational constant";
+		m_alt5->Hint = "Enter value of the speed of light in vacuum";
+		m_alt6->Hint = "Enter heaxidecimal value F";
 	}
 	else
 	{
@@ -289,6 +307,11 @@ void TFwCalcMainDlg::AssignLayout(eCalcLayout layout)
 						  "sin", "cos", "tan", "x\\f{Symbol}«\\fy",
 						  "hsin", "hcos", "htan", "RND"
 						 };
+		char *hints[16] = {"x squared", "Natural logarithm", "base 10 logarighm", "1 divided by x",
+						   "square-root", "Exponential function", "10 power x function", "y power x function",
+						   "sinus function", "cosinus function", "tangent function", "Swap X with y operator",
+						   "hyperbolic sinus function", "hyperbolic cosinus function", "hyperbolic tangent function", "Random number"
+						  };
 		eCalcOperator actions[16] = {eOpX2,eOpLN, eOpLOG, wOp1divX,
 								  eOpSqrt, eOpeX, eOp10X, eOpyX,
 								  eOpSin, eOpCos, eOpTan, eOpSwapXY,
@@ -297,6 +320,7 @@ void TFwCalcMainDlg::AssignLayout(eCalcLayout layout)
 			for(i=0;i<16;i++)
 			{
 				m_op_buttons[i]->Caption = labels[i];
+				m_op_buttons[i]->Hint = hints[i];
 				m_op_action[i] = actions[i];
 			}
 		}

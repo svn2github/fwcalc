@@ -4,7 +4,7 @@
 #define MyAppName "Fairwood Calculator"
 #define MyAppVerName "Fairwood Calculator v1.0"
 #define MyAppPublisher "Fairwood Soft"
-#define MyAppURL "http://www.faurschou-hviid.de/FwCalc"
+#define MyAppURL "http://fwcalc.sourceforge.net/"
 #define MyAppExeName "FwCalc.exe"
 
 [Setup]
@@ -20,8 +20,8 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
-LicenseFile=C:\users\hviid\C++\Tools\FwCalc\Install\License.txt
-OutputBaseFilename=FwCalcSetup.exe
+LicenseFile=..\Install\License.txt
+OutputBaseFilename=FwCalcSetup10.exe
 Compression=lzma
 SolidCompression=yes
 
@@ -32,7 +32,7 @@ Name: english; MessagesFile: compiler:Default.isl
 Name: desktopicon; Description: {cm:CreateDesktopIcon}; GroupDescription: {cm:AdditionalIcons}; Flags: unchecked
 
 [Files]
-Source: C:\users\hviid\C++\Tools\FwCalc\Release\FwCalc.exe; DestDir: {app}; Flags: ignoreversion
+Source: ..\Release\FwCalc.exe; DestDir: {app}; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -41,4 +41,3 @@ Name: {commondesktop}\{#MyAppName}; Filename: {app}\{#MyAppExeName}; Tasks: desk
 
 [Run]
 Filename: {app}\{#MyAppExeName}; Description: {cm:LaunchProgram,{#MyAppName}}; Flags: nowait postinstall skipifsilent
-

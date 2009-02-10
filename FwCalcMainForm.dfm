@@ -56,7 +56,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 28
       Width = 41
       Height = 25
+      Hint = 'Enter Digit 7'
       Caption = '7'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object Num8Button: TSpeedButton
@@ -64,7 +67,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 28
       Width = 41
       Height = 25
+      Hint = 'Enter Digit 8'
       Caption = '8'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object Num9Button: TSpeedButton
@@ -72,7 +78,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 28
       Width = 41
       Height = 25
+      Hint = 'Enter Digit 9'
       Caption = '9'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object Num4Button: TSpeedButton
@@ -80,7 +89,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 54
       Width = 41
       Height = 25
+      Hint = 'Enter Digit 4'
       Caption = '4'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object Num5Button: TSpeedButton
@@ -88,7 +100,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 54
       Width = 41
       Height = 25
+      Hint = 'Enter Digit 5'
       Caption = '5'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object Num6Button: TSpeedButton
@@ -96,7 +111,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 54
       Width = 41
       Height = 25
+      Hint = 'Enter Digit 6'
       Caption = '6'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object Num1Button: TSpeedButton
@@ -104,7 +122,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 80
       Width = 41
       Height = 25
+      Hint = 'Enter Digit 1'
       Caption = '1'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object Num2Button: TSpeedButton
@@ -112,7 +133,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 80
       Width = 41
       Height = 25
+      Hint = 'Enter Digit 2'
       Caption = '2'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object Num3Button: TSpeedButton
@@ -120,7 +144,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 80
       Width = 41
       Height = 25
+      Hint = 'Enter Digit 3'
       Caption = '3'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object Num0Button: TSpeedButton
@@ -128,7 +155,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 106
       Width = 41
       Height = 25
+      Hint = 'Enter Digit 0'
       Caption = '0'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object NumDotButton: TSpeedButton
@@ -136,7 +166,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 106
       Width = 41
       Height = 25
+      Hint = 'Enter Decimal Seperator'
       Caption = '.'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object NumEEXButton: TSpeedButton
@@ -144,7 +177,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 106
       Width = 41
       Height = 25
+      Hint = 'Enter Exponent'
       Caption = 'EEX'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object EnterButton: TSpeedButton
@@ -152,7 +188,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 132
       Width = 83
       Height = 25
+      Hint = 'Push value to stack'
       Caption = 'Enter'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = EnterButtonClick
     end
     object CHSButton: TSpeedButton
@@ -160,7 +199,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 132
       Width = 41
       Height = 25
+      Hint = 'Change sign of value or exponent'
       Caption = '+/-'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = CHSButtonClick
     end
     object SpeedButton1: TSpeedButton
@@ -168,7 +210,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 28
       Width = 41
       Height = 25
+      Hint = 'Division operator'
       Caption = '/'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object SpeedButton2: TSpeedButton
@@ -176,7 +221,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 54
       Width = 41
       Height = 25
+      Hint = 'Multiplication operator'
       Caption = '*'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object SpeedButton3: TSpeedButton
@@ -184,7 +232,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 80
       Width = 41
       Height = 25
+      Hint = 'Addition operator'
       Caption = '+'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object SpeedButton4: TSpeedButton
@@ -192,7 +243,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 106
       Width = 41
       Height = 25
+      Hint = 'Subtraction operator'
       Caption = '-'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = HandleEnterNum
     end
     object SetHexButton: TSpeedButton
@@ -200,7 +254,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 4
       Width = 30
       Height = 19
+      Hint = 'Switch to hexadecimal (base 16) mode'
       Caption = 'Hex'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = SetHexButtonClick
     end
     object SetDecButton: TSpeedButton
@@ -208,7 +265,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 4
       Width = 30
       Height = 19
+      Hint = 'Switch to decimal (base 10) mode'
       Caption = 'Dec'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = SetDecButtonClick
     end
     object SetOctButton: TSpeedButton
@@ -216,7 +276,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 4
       Width = 30
       Height = 19
+      Hint = 'Switch to ochtadecimal (base 8) mode'
       Caption = 'Oct'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = SetOctButtonClick
     end
     object SetBinButton: TSpeedButton
@@ -224,7 +287,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 4
       Width = 30
       Height = 19
+      Hint = 'Switch to binary (base 2) mode'
       Caption = 'Bin'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = SetBinButtonClick
     end
     object ToggleTrigButton: TSpeedButton
@@ -232,7 +298,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 4
       Width = 30
       Height = 19
+      Hint = 'Select trigometric mode (Radians, Degrees or Grad)'
       Caption = 'Rad'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = ToggleTrigButtonClick
     end
     object STOButton: TSpeedButton
@@ -240,15 +309,21 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 2
       Width = 41
       Height = 25
+      Hint = 'Store value to memory'
       Caption = 'STO'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = StoreMemButtonClick
     end
-    object SpeedButton6: TSpeedButton
+    object RCLButton: TSpeedButton
       Left = 261
       Top = 2
       Width = 41
       Height = 25
+      Hint = 'Recall value from memory'
       Caption = 'RCL'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = RecallMemButtonClick
     end
     object CLRButton: TSpeedButton
@@ -256,7 +331,10 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 2
       Width = 41
       Height = 25
+      Hint = 'Clear value from stack'
       Caption = 'CLR'
+      ParentShowHint = False
+      ShowHint = True
       OnClick = CLRButtonClick
     end
     object BackButton: TSpeedButton
@@ -264,6 +342,7 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Top = 2
       Width = 41
       Height = 25
+      Hint = 'Delete last character'
       Caption = #231
       Font.Charset = SYMBOL_CHARSET
       Font.Color = clWindowText
@@ -271,6 +350,8 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Font.Name = 'Wingdings'
       Font.Style = []
       ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
       OnClick = BackButtonClick
     end
   end

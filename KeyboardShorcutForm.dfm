@@ -29,6 +29,9 @@ object KeyboardShorcutDlg: TKeyboardShorcutDlg
     Font.Name = 'Courier New'
     Font.Style = []
     Lines.Strings = (
+      'Switch to Alternative button layout using Shift key'
+      'Switch to Computational button using Ctrl key'
+      ''
       'Operator      Key'
       '+             +'
       '-             -'

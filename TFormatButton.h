@@ -36,6 +36,8 @@ public:
 __published:
 	__property Caption;
 	__property Font;
+	__property ShowHint;
+	__property Hint;
 
 	__property OnClick;
 
