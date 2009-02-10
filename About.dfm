@@ -1968,6 +1968,7 @@ object AboutDlg: TAboutDlg
       94EBD722C8B7EF8AB857B62CDBE82A7163D5729F9D7164AA09E9959656E25C52
       840F7C596EDD5BF9862BBBFFD9}
     Stretch = True
+    OnClick = HomepageURLClick
     ExplicitHeight = 282
   end
   object Label3: TLabel
@@ -1976,6 +1977,7 @@ object AboutDlg: TAboutDlg
     Width = 183
     Height = 13
     Caption = #169'2009 Stubbe F. Hviid   - GPL2 license'
+    OnClick = HomepageURLClick
   end
   object Version: TLabel
     Left = 11
@@ -1983,13 +1985,23 @@ object AboutDlg: TAboutDlg
     Width = 35
     Height = 13
     Caption = 'Version'
+    OnClick = HomepageURLClick
   end
   object CompileTime: TLabel
     Left = 11
     Top = 59
     Width = 35
-    Height = 16
+    Height = 13
     Caption = 'Version'
+    OnClick = HomepageURLClick
+  end
+  object HomepageURL: TLabel
+    Left = 227
+    Top = 20
+    Width = 135
+    Height = 13
+    Caption = 'http://fwcalc.sourceforge.net/'
+    OnClick = HomepageURLClick
   end
   object Ok: TButton
     Left = 164

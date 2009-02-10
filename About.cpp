@@ -54,3 +54,9 @@ void __fastcall TAboutDlg::OkClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TAboutDlg::HomepageURLClick(TObject *Sender)
+{
+	ShellExecute(NULL, "open", "http://fwcalc.sourceforge.net/", "", "", SW_SHOWDEFAULT); 
+}
+//---------------------------------------------------------------------------
+
