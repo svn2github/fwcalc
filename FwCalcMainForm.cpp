@@ -561,12 +561,168 @@ char *e;
         else
         {
                 num = p;
-                power = "";
-        }
+				power = "";
+		}
 
-        tlc = num;
-        tuc = power;
+		tlc = num;
+		tuc = power;
 }
+
+void TFwCalcMainDlg::ParseDecNumber(AnsiString number, AnsiString &nn, AnsiString &dn, AnsiString &en)
+{
+	dn = "";
+	en = "";
+	nn = "";
+
+AnsiString tmp = number.UpperCase().Trim().c_str();
+char *p = tmp.c_str();
+char *pd, *pe;
+char *e = p;
+	while(*e)
+	{
+		if(*e == ',')
+			*e = '.';
+		e++;
+	}
+
+	pd = strchr(p, '.');
+	pe = strchr(p, 'E');
+
+	if(pe)
+	{
+		en = (pe+1);
+		*pe = 0;
+		if(en == "")
+        	en = "0";
+	}
+	if(pd)
+	{
+		dn = (pd+1);
+		*pd = 0;
+	}
+    nn = p;
+}
+
+int TFwCalcMainDlg::CalcWidthOfDecNumber(TCanvas *cv, AnsiString number)
+{
+AnsiString nn, dn, en;
+
+	ParseDecNumber(number, nn, dn, en);
+
+int width = 0;
+
+	if(en != "")
+	{
+		cv->Font->Size = m_font_size_super;
+		width += cv->TextWidth(en);
+		cv->Font->Size = m_font_size;
+		width += cv->TextWidth(" 10");
+	}
+	cv->Font->Size = m_font_size;
+
+	if(dn != "")
+	{
+	char sd[2] = " ";
+		sd[0] = m_engine->DecimalChar;
+		width += cv->TextWidth(sd);
+		width += cv->TextWidth(dn);
+	}
+char sign = '+';
+	if(nn.SubString(1,1) == '-')
+	{
+		sign = '-';
+		nn = nn.SubString(2, nn.Length()-1);
+	}
+	width += cv->TextWidth(nn);
+int gs = nn.Length() / 3;
+	if(gs*3 == nn.Length())
+    	gs--;
+	width += gs * cv->TextWidth(" ") / 3;
+	if(sign == '-')
+    	width += cv->TextWidth("-");
+
+	return width;
+}
+
+void TFwCalcMainDlg::PaintDecNumber(TCanvas *cv, int x, int y, AnsiString number)
+{
+AnsiString nn, dn, en;
+
+	ParseDecNumber(number, nn, dn, en);
+
+	char sign = '+';
+	if(nn.SubString(1,1) == '-')
+	{
+		sign = '-';
+		nn = nn.SubString(2, nn.Length()-1);
+	}
+
+	// Set default font size
+	cv->Font->Size = m_font_size;
+
+	// calc seperator width
+int sw = cv->TextWidth(" ") / 3;
+
+	// move to start position
+	cv->MoveTo(x, y);
+
+	// if negative write '-'
+	if(sign == '-')
+	{
+		cv->Font->Color = m_minus_sign_color;
+		cv->TextOut(cv->PenPos.x, cv->PenPos.y, "-");
+	}
+	// paint int part
+	cv->Font->Color = m_int_part_color;
+int gs = nn.Length() / 3;
+	if(gs*3 == nn.Length())
+    	gs--;
+	// write first group
+int fgl = nn.Length() - gs*3;
+	cv->TextOut(cv->PenPos.x, cv->PenPos.y, nn.SubString(1, fgl));
+	nn = nn.SubString(fgl+1, nn.Length()-fgl);
+int i;
+	for(i=0;i<gs;i++)
+	{
+		cv->MoveTo(cv->PenPos.x+sw, cv->PenPos.y);
+	AnsiString gt = nn.SubString(1, 3);
+    	nn = nn.SubString(4, nn.Length()-3);
+		cv->TextOut(cv->PenPos.x, cv->PenPos.y, gt);
+	}
+
+	if(dn != "")
+	{
+	char sd[2] = " ";
+		sd[0] = m_engine->DecimalChar;
+		cv->Font->Color = m_dot_color;
+		cv->TextOut(cv->PenPos.x, cv->PenPos.y, sd);
+		cv->Font->Color = m_frac_part_color;
+		cv->TextOut(cv->PenPos.x, cv->PenPos.y, dn);
+	}
+	if(en != "")
+	{
+	char fc = *(en.c_str());
+		if(fc == '-' || fc == '+')
+			en = en.SubString(2, en.Length()-1);
+
+		cv->Font->Color = m_exp10_color;
+		cv->TextOut(cv->PenPos.x, cv->PenPos.y, " 10");
+
+		// switch to power font size
+		cv->Font->Size = m_font_size_super;
+
+		// draw power sign if required
+	int y_off = cv->PenPos.y;
+		if(fc == '-')
+		{
+			cv->Font->Color = m_powersign_minus_color;
+			cv->TextOut(cv->PenPos.x, y_off-2, "-");
+		}
+		cv->Font->Color = m_power_color;
+		cv->TextOut(cv->PenPos.x, y_off-2, en);
+	}
+}
+
 
 void __fastcall TFwCalcMainDlg::PaintBoxPaint(TObject *Sender)
 {
@@ -602,91 +758,8 @@ int index = 0;
 			{
 				if(m_engine->BaseMode == eBaseDec)
 				{
-				AnsiString tlc, tuc;
-
-					ParseValue(txt, tlc, tuc);
-
-				// calc width of number
-				int length = 0;
-
-					cv->Font->Size = m_font_size;
-
-					length = cv->TextWidth(tlc);
-
-					if(tuc != "")
-					{
-						length += cv->TextWidth(" 10");
-						cv->Font->Size = m_font_size_super;
-						length += cv->TextWidth(tuc);
-					}
-					// paint Number
-					cv->MoveTo(r.Right - length-10, y_off);
-
-					cv->Font->Size = m_font_size;
-				AnsiString tmp1 = tlc.c_str();
-				char *p = tmp1.c_str();
-				char *e;
-
-				// Paint sign
-					if(*p == '+')
-					{
-					char tmp[2] = "+";
-						cv->Font->Color = m_plus_sign_color;
-						cv->TextOut(cv->PenPos.x, y_off, tmp);
-						p++;
-					}
-					else if(*p == '-')
-					{
-					char tmp[2] = "-";
-						cv->Font->Color = m_minus_sign_color;
-						cv->TextOut(cv->PenPos.x, y_off, tmp);
-						p++;
-					}
-				// paint int part
-					e = strchr(p, '.');
-					if(e)
-					{
-					char tmp[2] = ".";
-						*e++ = 0;
-						cv->Font->Color = m_int_part_color;
-						cv->TextOut(cv->PenPos.x, y_off, p);
-						cv->Font->Color = m_dot_color;
-						cv->TextOut(cv->PenPos.x, y_off, tmp);
-						cv->Font->Color = m_frac_part_color;
-						cv->TextOut(cv->PenPos.x, y_off, e);
-					}
-					else
-					{
-						cv->Font->Color = m_int_part_color;
-						cv->TextOut(cv->PenPos.x, y_off, p);
-					}
-
-					if(tuc != "")
-					{
-					AnsiString tmp2 = tuc.c_str();
-						cv->Font->Color = m_exp10_color;
-						cv->TextOut(cv->PenPos.x, y_off, " 10");
-
-						cv->Font->Size = m_font_size_super;
-						p = tmp2.c_str();
-
-						if(*p == '+')
-						{
-						char tmp[2] = "+";
-							cv->Font->Color = m_powersign_plus_color;
-							cv->TextOut(cv->PenPos.x, y_off-2, tmp);
-							p++;
-						}
-						else if(*p == '-')
-						{
-						char tmp[2] = "-";
-							cv->Font->Color = m_powersign_minus_color;
-							cv->TextOut(cv->PenPos.x, y_off-2, tmp);
-							p++;
-						}
-						cv->Font->Color = m_power_color;
-						cv->TextOut(cv->PenPos.x, y_off-2, p);
-					}
+				int tw = CalcWidthOfDecNumber(cv, txt);
+					PaintDecNumber(cv, r.Right - 10 - tw, y_off, txt);
 				}
 				else
 				{
@@ -944,6 +1017,14 @@ TMenuItem *mi = dynamic_cast<TMenuItem *>(Sender);
 void __fastcall TFwCalcMainDlg::Keyboard1Click(TObject *Sender)
 {
 	KeyboardShorcutDlg->Show();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TFwCalcMainDlg::NumDotButtonClick(TObject *Sender)
+{
+TSpeedButton *b = dynamic_cast<TSpeedButton *>(Sender);
+	if(b)
+		m_engine->EnterDecimalSeperator();	
 }
 //---------------------------------------------------------------------------
 

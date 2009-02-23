@@ -170,7 +170,7 @@ object FwCalcMainDlg: TFwCalcMainDlg
       Caption = '.'
       ParentShowHint = False
       ShowHint = True
-      OnClick = HandleEnterNum
+      OnClick = NumDotButtonClick
     end
     object NumEEXButton: TSpeedButton
       Left = 303

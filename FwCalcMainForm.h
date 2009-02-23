@@ -163,6 +163,7 @@ __published:	// IDE-managed Components
 	void __fastcall Paste1Click(TObject *Sender);
 	void __fastcall SetDigitsMenuClick(TObject *Sender);
 	void __fastcall Keyboard1Click(TObject *Sender);
+	void __fastcall NumDotButtonClick(TObject *Sender);
 
 private:	// windows event handlers
 void __fastcall CMDialogKey(TWMKey &key);
@@ -202,6 +203,11 @@ int m_font_size;
 int m_font_size_super;
 
 bool m_updating;
+
+protected:
+void ParseDecNumber(AnsiString number, AnsiString &nn, AnsiString &dn, AnsiString &en);
+int CalcWidthOfDecNumber(TCanvas *cv, AnsiString number);
+void PaintDecNumber(TCanvas *cv, int x, int y, AnsiString number);
 
 private:
 	void __fastcall OnModeChange(TObject *Sender);

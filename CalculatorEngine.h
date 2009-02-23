@@ -132,6 +132,7 @@ public:
 	void ProcessChar(char key);
 	void ProcessKey(TShiftState shift, int key);
 	bool ProcessOperator(eCalcOperator op);
+	bool EnterDecimalSeperator();
 
 	void PushValueD(long double d);
 	void PushValueI(unsigned long long ui);
@@ -158,6 +159,8 @@ public:
 	__property AnsiString RegisterValue[int position] = {read=GetRegisterValue};
 
 	__property AnsiString LastError = {read=m_last_error};
+
+	__property int DecimalChar = {read=m_decimal_char};
 
 	// Events
 	__property TNotifyEvent OnStackChange = {read=f_on_stack_change, write=f_on_stack_change};

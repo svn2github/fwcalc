@@ -100,11 +100,18 @@ void TRPNStackValue::Set(AnsiString value, eBaseMode base)
 			case eBaseDec:
 			{
 			long double d;
-			AnsiString tmp = value.UpperCase();
+			AnsiString tmp = value.UpperCase().c_str();
 			char *p = tmp.c_str();
 				if(*p == 'E')
-					value = AnsiString("1.0") + value;
-				SetD(_atold(value.c_str()));
+					tmp = AnsiString("1.0") + tmp;
+				p = tmp.c_str();
+				while(*p)
+				{
+					if(*p == ',')
+						*p = '.';
+					p++;
+				}
+				SetD(_atold(tmp.c_str()));
 			}
 			break;
 
@@ -331,8 +338,8 @@ AnsiString TCalculatorEngine::RPNStackValueToText(TRPNStackValue *v)
 	{
 		case eBaseHex:
 		{
-		unsigned long hv = (v->GetI() >> 32) & 0xFFFF;
-		unsigned long lv = v->GetI() & 0xFFFF;
+		unsigned long hv = (v->GetI() >> 32) & 0xFFFFFFFF;
+		unsigned long lv = v->GetI() & 0xFFFFFFFF;
 		AnsiString out;
 			if(hv)
             	return AnsiString().sprintf("%X", hv) + AnsiString().sprintf("%08X", lv);
@@ -696,6 +703,11 @@ void TCalculatorEngine::ProcessChar(char key)
 
 	if(g_error != "")
 		SetError(g_error);
+}
+
+bool TCalculatorEngine::EnterDecimalSeperator()
+{
+	ProcessChar(m_decimal_char);
 }
 
 
