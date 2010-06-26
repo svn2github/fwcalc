@@ -403,7 +403,7 @@ object FwCalcMainDlg: TFwCalcMainDlg
       end
     end
     object Config1: TMenuItem
-      Caption = 'Config'
+      Caption = 'Display'
       object Digits2: TMenuItem
         Caption = 'Digits'
         object Auto1: TMenuItem

@@ -305,6 +305,8 @@ int i;
 	m_request_inverse = false;
 	m_request_hyperbolic = false;
 
+	m_last_key_was_e = false;
+
 
 
 AnsiString tmp = AnsiString(1.1);
@@ -568,7 +570,7 @@ char tmp[2] = " ";
 	tmp[0] = key;
 	m_editor = m_editor + AnsiString(tmp).UpperCase();
 	if(OnStackChange)
-    	OnStackChange(this);
+		OnStackChange(this);
 }
 
 void TCalculatorEngine::ProcessChar(char key)
@@ -577,7 +579,7 @@ void TCalculatorEngine::ProcessChar(char key)
 	g_error = "";	// Clear error flags
 	SetError("");
 	if(m_editor == "ERR")
-    	m_editor = "";
+		m_editor = "";
 
 	if(key < '0' || key > '9')
 	{
@@ -612,7 +614,7 @@ void TCalculatorEngine::ProcessChar(char key)
 			if(m_base_mode == eBaseOct && key >= '8')	return;
 			if(m_base_mode == eBaseOct && key >= '2')	return;
 			PushKeyToEditor(key);
-        }
+		}
 		break;
 
 		case 'A':
@@ -652,7 +654,15 @@ void TCalculatorEngine::ProcessChar(char key)
 		break;
 
 		case '+': ProcessOperator(eOpPlus); break;
-		case '-': ProcessOperator(eOpMinus); break;
+		case '-':
+		{
+			if(m_last_key_was_e)
+				ProcessOperator(eOpCHS);
+			else
+				ProcessOperator(eOpMinus);
+			m_last_key_was_e = false;
+		}
+		break;
 		case '*': ProcessOperator(eOpMul); break;
 		case '/': ProcessOperator(eOpDiv); break;
 		case '%': ProcessOperator(eOpPercent); break;
@@ -693,6 +703,11 @@ void TCalculatorEngine::ProcessChar(char key)
 
 		case 'l': if(m_request_inverse) ProcessOperator(eOpeX); else ProcessOperator(eOpLN); break;
 	}
+
+	if(key == 'e' || key == 'E')
+		m_last_key_was_e = true;
+	else
+		m_last_key_was_e = false;
 
 	// if keypress was different from yperbolic or inverse request then reset request states
 	if(!(key == 'i' || key == 'h'))

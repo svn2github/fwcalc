@@ -82,9 +82,22 @@ object KeyboardShorcutDlg: TKeyboardShorcutDlg
       'RCL 9         CTRL+F10  or SHIFT+F10'
       'RCL N         "Arrow Down" N   (0 <= N <= 9)'
       ''
+      'CTRL  h     Switch to Hexadecimal mode'
+      'CTRL  d     Switch to decimal mode'
+      'CTRL  o     Switch to octadecimal mode'
+      'CTRL  b     Switch to binary mode'
       ''
-      'Consequitive keys means multiple '
-      'consequitive key pressed')
+      'SHIFT +     Increase number of visible digits'
+      'SHIFT  -      Decrease number of visible digits'
+      ''
+      ''
+      'SHIFT  r        Switch to RAD trigometric mode'
+      'SHIFT  d       Switch to DEG trigometric mode'
+      'SHIFT  g       Switch to GRAD trigometric mode'
+      ''
+      ''
+      'Consequitive key values means multiple '
+      'consequitive keys pressed')
     ParentFont = False
     ReadOnly = True
     ScrollBars = ssBoth

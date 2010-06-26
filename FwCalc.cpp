@@ -3,9 +3,9 @@
 #include <vcl.h>
 #pragma hdrstop
 //---------------------------------------------------------------------------
-USEFORM("FwCalcMainForm.cpp", FwCalcMainDlg);
 USEFORM("About.cpp", AboutDlg);
 USEFORM("KeyboardShorcutForm.cpp", KeyboardShorcutDlg);
+USEFORM("FwCalcMainForm.cpp", FwCalcMainDlg);
 //---------------------------------------------------------------------------
 WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
@@ -13,6 +13,7 @@ WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 	{
 		Application->Initialize();
 		SetApplicationMainFormOnTaskBar(Application, true);
+		Application->Title = "Fairwood Calculator";
 		Application->CreateForm(__classid(TFwCalcMainDlg), &FwCalcMainDlg);
 		Application->CreateForm(__classid(TAboutDlg), &AboutDlg);
 		Application->CreateForm(__classid(TKeyboardShorcutDlg), &KeyboardShorcutDlg);

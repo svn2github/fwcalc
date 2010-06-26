@@ -203,6 +203,7 @@ int m_font_size;
 int m_font_size_super;
 
 bool m_updating;
+bool m_key_processed;
 
 protected:
 void ParseDecNumber(AnsiString number, AnsiString &nn, AnsiString &dn, AnsiString &en);

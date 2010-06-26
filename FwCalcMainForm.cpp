@@ -4,6 +4,8 @@
 #pragma hdrstop
 #include <stdio.h>
 
+#include <registry.hpp>
+
 #include "FwCalcMainForm.h"
 #include <math.h>
 #include <Math.hpp>
@@ -12,6 +14,7 @@
 
 #include "KeyboardShorcutForm.h"
 
+#include "ConfigForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -251,6 +254,21 @@ void TFwCalcMainDlg::AssignAltButtons()
 		m_alt4->Hint = "Enter heaxidecimal value D";
 		m_alt5->Hint = "Enter heaxidecimal value E";
 		m_alt6->Hint = "Enter heaxidecimal value F";
+
+		NumDotButton->Visible = false;
+		NumEEXButton->Visible = false;
+		CHSButton->Visible = false;
+
+		Num0Button->Visible = true;
+		Num1Button->Visible = true;
+		Num2Button->Visible = true;
+		Num3Button->Visible = true;
+		Num4Button->Visible = true;
+		Num5Button->Visible = true;
+		Num6Button->Visible = true;
+		Num7Button->Visible = true;
+		Num8Button->Visible = true;
+		Num9Button->Visible = true;
 	}
 	else if(m_engine->BaseMode == eBaseDec)
 	{
@@ -272,8 +290,23 @@ void TFwCalcMainDlg::AssignAltButtons()
 		m_alt4->Hint = "Enter value of Newtons gravitational constant";
 		m_alt5->Hint = "Enter value of the speed of light in vacuum";
 		m_alt6->Hint = "Enter heaxidecimal value F";
+
+		NumDotButton->Visible = true;
+		NumEEXButton->Visible = true;
+		CHSButton->Visible = true;
+
+		Num0Button->Visible = true;
+		Num1Button->Visible = true;
+		Num2Button->Visible = true;
+		Num3Button->Visible = true;
+		Num4Button->Visible = true;
+		Num5Button->Visible = true;
+		Num6Button->Visible = true;
+		Num7Button->Visible = true;
+		Num8Button->Visible = true;
+		Num9Button->Visible = true;
 	}
-	else
+	else if(m_engine->BaseMode == eBaseOct)
 	{
 		m_alt1->Visible = false;
 		m_alt2->Visible = false;
@@ -281,6 +314,45 @@ void TFwCalcMainDlg::AssignAltButtons()
 		m_alt4->Visible = false;
 		m_alt5->Visible = false;
 		m_alt6->Visible = false;
+
+		NumDotButton->Visible = false;
+		NumEEXButton->Visible = false;
+		CHSButton->Visible = false;
+
+		Num0Button->Visible = true;
+		Num1Button->Visible = true;
+		Num2Button->Visible = true;
+		Num3Button->Visible = true;
+		Num4Button->Visible = true;
+		Num5Button->Visible = true;
+		Num6Button->Visible = true;
+		Num7Button->Visible = true;
+		Num8Button->Visible = false;
+		Num9Button->Visible = false;
+	}
+	else // binary
+	{
+		m_alt1->Visible = false;
+		m_alt2->Visible = false;
+		m_alt3->Visible = false;
+		m_alt4->Visible = false;
+		m_alt5->Visible = false;
+		m_alt6->Visible = false;
+
+		NumDotButton->Visible = false;
+		NumEEXButton->Visible = false;
+		CHSButton->Visible = false;
+
+		Num0Button->Visible = true;
+		Num1Button->Visible = true;
+		Num2Button->Visible = false;
+		Num3Button->Visible = false;
+		Num4Button->Visible = false;
+		Num5Button->Visible = false;
+		Num6Button->Visible = false;
+		Num7Button->Visible = false;
+		Num8Button->Visible = false;
+		Num9Button->Visible = false;
 	}
 	m_alt1->Invalidate();
 	m_alt2->Invalidate();
@@ -394,24 +466,112 @@ int i;
 
 void __fastcall TFwCalcMainDlg::FormKeyPress(TObject *Sender, char &Key)
 {
-	m_engine->ProcessChar(Key);
+	if(!m_key_processed)
+		m_engine->ProcessChar(Key);
 }
 
 //---------------------------------------------------------------------------
 void __fastcall TFwCalcMainDlg::FormKeyDown(TObject *Sender, WORD &Key,
       TShiftState Shift)
 {
+	// Reset key processed flag
+	m_key_processed = false;
+
+	// Mark key as processed
+	m_key_processed = true;
+
+	// Process key
 	switch(Key)
 	{
+		default:
+		m_key_processed = false;	// Default handler set the processed flag to false
+		break;
+
 		case VK_BACK:
 		case VK_DELETE:
 		case VK_ESCAPE:
 		m_engine->ProcessKey(Shift, Key);
 		break;
 
+		case VK_DECIMAL:
+		m_engine->EnterDecimalSeperator();
+		break;
+
 		//case VK_ENTER:
 		case VK_RETURN:
 		m_engine->ProcessKey(Shift, Key);
+		break;
+
+		case VK_ADD:
+		{
+			if(Shift.Contains(ssShift))
+			{
+				if(m_engine->SignificantDigits < 19)
+					m_engine->SignificantDigits++;
+			}
+			else
+				m_engine->ProcessOperator(eOpPlus);
+		}
+		break;
+
+		case VK_SUBTRACT:
+		{
+			if(Shift.Contains(ssShift))
+			{
+				if(m_engine->SignificantDigits > 0)
+					m_engine->SignificantDigits--;
+			}
+			else
+				m_engine->ProcessOperator(eOpMinus);
+		}
+		break;
+
+		case 'h':
+		case 'H':
+		if(Shift.Contains(ssCtrl))
+			m_engine->SetBaseMode(eBaseHex);
+		else
+			m_key_processed = false;
+		break;
+
+		case 'o':
+		case 'O':
+		if(Shift.Contains(ssCtrl))
+			m_engine->SetBaseMode(eBaseOct);
+		else
+			m_key_processed = false;
+		break;
+
+		case 'd':
+		case 'D':
+		if(Shift.Contains(ssCtrl))
+			m_engine->SetBaseMode(eBaseDec);
+		else if(Shift.Contains(ssShift))
+			m_engine->SetTrigMode(eTrigDeg);
+		else
+			m_key_processed = false;
+		break;
+
+		case 'G':
+		if(Shift.Contains(ssShift))
+			m_engine->SetTrigMode(eTrigGrad);
+		else
+			m_key_processed = false;
+		break;
+
+		case 'R':
+		if(Shift.Contains(ssShift))
+			m_engine->SetTrigMode(eTrigRad);
+		else
+			m_key_processed = false;
+		break;
+
+		case 'b':
+		case 'B':
+		if(Shift.Contains(ssCtrl))
+			m_engine->SetBaseMode(eBaseBin);
+		else
+			m_key_processed = false;
 		break;
 
 		case VK_CONTROL:
@@ -425,34 +585,42 @@ void __fastcall TFwCalcMainDlg::FormKeyDown(TObject *Sender, WORD &Key,
 		case VK_F1:
 		if(Shift.Contains(ssCtrl) || Shift.Contains(ssShift)) m_engine->Recall(0); else m_engine->Store(0);
 		break;
+
 		case VK_F2:
 		if(Shift.Contains(ssCtrl) || Shift.Contains(ssShift)) m_engine->Recall(1); else m_engine->Store(1);
 		break;
+
 		case VK_F3:
 		if(Shift.Contains(ssCtrl) || Shift.Contains(ssShift)) m_engine->Recall(2); else m_engine->Store(2);
 		break;
+
 		case VK_F4:
 		if(Shift.Contains(ssCtrl) || Shift.Contains(ssShift)) m_engine->Recall(3); else m_engine->Store(3);
 		break;
+
 		case VK_F5:
 		if(Shift.Contains(ssCtrl) || Shift.Contains(ssShift)) m_engine->Recall(4); else m_engine->Store(4);
 		break;
+
 		case VK_F6:
 		if(Shift.Contains(ssCtrl) || Shift.Contains(ssShift)) m_engine->Recall(5); else m_engine->Store(5);
 		break;
+
 		case VK_F7:
 		if(Shift.Contains(ssCtrl) || Shift.Contains(ssShift)) m_engine->Recall(6); else m_engine->Store(6);
 		break;
+
 		case VK_F8:
 		if(Shift.Contains(ssCtrl) || Shift.Contains(ssShift)) m_engine->Recall(7); else m_engine->Store(7);
 		break;
+
 		case VK_F9:
 		if(Shift.Contains(ssCtrl) || Shift.Contains(ssShift)) m_engine->Recall(8); else m_engine->Store(8);
 		break;
+
 		case VK_F10:
 		if(Shift.Contains(ssCtrl) || Shift.Contains(ssShift)) m_engine->Recall(9); else m_engine->Store(9);
 		break;
-
 	}
 	PaintBox->Invalidate();
 }
@@ -513,6 +681,7 @@ void __fastcall TFwCalcMainDlg::FormKeyUp(TObject *Sender, WORD &Key,
 		break;
 
 	}
+	m_key_processed = false;
 }
 
 //---------------------------------------------------------------------------
@@ -554,7 +723,7 @@ char *e;
         {
 				*e++ = 0;
                 power = e;
-                num = p;
+				num = p;
                 if(power == "")
                         power = "0";
         }
@@ -788,7 +957,7 @@ TMenuItem *mi = dynamic_cast<TMenuItem *>(Sender);
 
 		if(mi)
 		{
-		char *p = mi->Caption.c_str();
+		wchar_t *p = mi->Caption.c_str();
 				if(*p == '&')   p++;
 		int digits = AnsiString(p).ToInt();
 			   //	m_display_format = AnsiString("%.") + digits + "Lg";
@@ -935,6 +1104,7 @@ void __fastcall TFwCalcMainDlg::ComputationalLayoutMenuClick(TObject *Sender)
 
 void __fastcall TFwCalcMainDlg::FormShow(TObject *Sender)
 {
+	// Update layout
 	AssignAltButtons();
 	AssignLayout(eLayoutNormal);	
 }
@@ -999,7 +1169,7 @@ TMenuItem *mi = dynamic_cast<TMenuItem *>(Sender);
 		else
 		{
 		char tmp[3] = "  ";
-		char *p = mi->Caption.c_str();
+		char *p = AnsiString(mi->Caption).c_str();
 		char *e = tmp;
 			while(*p && e < tmp+2)
 			{
@@ -1026,5 +1196,5 @@ TSpeedButton *b = dynamic_cast<TSpeedButton *>(Sender);
 	if(b)
 		m_engine->EnterDecimalSeperator();	
 }
-//---------------------------------------------------------------------------
+
 

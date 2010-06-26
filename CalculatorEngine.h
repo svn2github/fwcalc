@@ -92,6 +92,7 @@ protected:
 	eBaseMode m_base_mode;
 
 	int m_decimal_char;
+	bool m_last_key_was_e;
 
 	int m_significant_digits;
 
