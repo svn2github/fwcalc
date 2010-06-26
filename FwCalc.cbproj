@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{c7487593-4961-483b-98b3-5220d0b579b3}</ProjectGuid>
 			<MainSource>FwCalc.cpp</MainSource>
-			<Config Condition="'$(Config)'==''">Release</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<ProjectVersion>12.0</ProjectVersion>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
@@ -72,7 +72,7 @@
 						<VersionInfo Name="MajorVer">1</VersionInfo>
 						<VersionInfo Name="MinorVer">2</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">1</VersionInfo>
+						<VersionInfo Name="Build">3</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -84,7 +84,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">Fairwood Soft</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">FAirwood RPN Calculator</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">1.2.0.1</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.2.0.3</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName">FwCalc</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalCopyright">(C)2006-2010 Stubbe F. Hviid</VersionInfoKeys>
 						<VersionInfoKeys Name="LegalTrademarks"/>
@@ -92,7 +92,7 @@
 						<VersionInfoKeys Name="ProductName">Fairwood RPN Canculator</VersionInfoKeys>
 						<VersionInfoKeys Name="ProductVersion">1.2.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
-						<VersionInfoKeys Name="Last Compile">2010-06-26 16:31</VersionInfoKeys>
+						<VersionInfoKeys Name="Last Compile">2010-06-26 17:08</VersionInfoKeys>
 					</VersionInfoKeys>
 					<Debugging>
 						<Debugging Name="DebugSourceDirs"/>
@@ -163,23 +163,6 @@
 			<ProjectFileVersion>12</ProjectFileVersion>
 		</ProjectExtensions>
 		<ItemGroup>
-			<CppCompile Include="FwCalcMainForm.cpp">
-				<Form>FwCalcMainDlg</Form>
-				<DependentOn>FwCalcMainForm.h</DependentOn>
-				<BuildOrder>1</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="FwCalc.cpp">
-				<BuildOrder>3</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="TFormatButton.cpp">
-				<DependentOn>TFormatButton.h</DependentOn>
-				<BuildOrder>5</BuildOrder>
-			</CppCompile>
-			<CppCompile Include="KeyboardShorcutForm.cpp">
-				<Form>KeyboardShorcutDlg</Form>
-				<DependentOn>KeyboardShorcutForm.h</DependentOn>
-				<BuildOrder>6</BuildOrder>
-			</CppCompile>
 			<CppCompile Include="About.cpp">
 				<Form>AboutDlg</Form>
 				<DependentOn>About.h</DependentOn>
@@ -192,9 +175,26 @@
 				<DependentOn>CalculatorEngine.h</DependentOn>
 				<BuildOrder>4</BuildOrder>
 			</CppCompile>
-			<FormResources Include="FwCalcMainForm.dfm"/>
-			<FormResources Include="KeyboardShorcutForm.dfm"/>
+			<CppCompile Include="KeyboardShorcutForm.cpp">
+				<Form>KeyboardShorcutDlg</Form>
+				<DependentOn>KeyboardShorcutForm.h</DependentOn>
+				<BuildOrder>6</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FwCalcMainForm.cpp">
+				<Form>FwCalcMainDlg</Form>
+				<DependentOn>FwCalcMainForm.h</DependentOn>
+				<BuildOrder>1</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="FwCalc.cpp">
+				<BuildOrder>3</BuildOrder>
+			</CppCompile>
+			<CppCompile Include="TFormatButton.cpp">
+				<DependentOn>TFormatButton.h</DependentOn>
+				<BuildOrder>5</BuildOrder>
+			</CppCompile>
 			<FormResources Include="About.dfm"/>
+			<FormResources Include="KeyboardShorcutForm.dfm"/>
+			<FormResources Include="FwCalcMainForm.dfm"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>

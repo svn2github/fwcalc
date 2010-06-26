@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Fairwood Calculator"
-#define MyAppVerName "Fairwood Calculator v1.1"
+#define MyAppVerName "Fairwood Calculator v1.2"
 #define MyAppPublisher "Fairwood Soft"
 #define MyAppURL "http://fwcalc.sourceforge.net/"
 #define MyAppExeName "FwCalc.exe"
@@ -21,7 +21,7 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DefaultGroupName={#MyAppName}
 LicenseFile=..\Install\License.txt
-OutputBaseFilename=FwCalcSetup11
+OutputBaseFilename=FwCalcSetup12
 Compression=lzma
 SolidCompression=yes
 

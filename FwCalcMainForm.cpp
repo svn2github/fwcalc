@@ -14,7 +14,6 @@
 
 #include "KeyboardShorcutForm.h"
 
-#include "ConfigForm.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -510,7 +509,7 @@ void __fastcall TFwCalcMainDlg::FormKeyDown(TObject *Sender, WORD &Key,
 					m_engine->SignificantDigits++;
 			}
 			else
-				m_engine->ProcessOperator(eOpPlus);
+				m_engine->ProcessChar('+');
 		}
 		break;
 
@@ -522,7 +521,7 @@ void __fastcall TFwCalcMainDlg::FormKeyDown(TObject *Sender, WORD &Key,
 					m_engine->SignificantDigits--;
 			}
 			else
-				m_engine->ProcessOperator(eOpMinus);
+				m_engine->ProcessChar('-');
 		}
 		break;
 
